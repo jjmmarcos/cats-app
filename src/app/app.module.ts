@@ -4,21 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NewCatComponent } from './components/new-cat/new-cat.component';
-import { EditCatComponent } from './components/edit-cat/edit-cat.component';
-import { DeleteCatComponent } from './components/delete-cat/delete-cat.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewCatComponent,
-    EditCatComponent,
-    DeleteCatComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,22 +1,4 @@
-hola
-
-<div class="container-fluid">
-  <div class="row">
-    <div *ngFor="let cat of cats;" 
-    class="col-sm-6 col-m-6 col-lg-4 col-xl-3 m-2 mx-auto">
-      <div 
-            class="card" 
-            style="width: 18rem;">
-        <img src="{{cat.img}}" class="card-img-top" alt="{{cat.name}}">
-        <div class="card-body">
-          <h5 class="card-title">{{cat.name}}</h5>
-          <p class="card-text">{{cat.description}}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
+<app-header></app-header>
 
 <router-outlet></router-outlet>
+

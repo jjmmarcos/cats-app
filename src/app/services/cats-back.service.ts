@@ -22,7 +22,7 @@ export class CatsBackService {
             this.cats.push(cat);
           });
           this.cats = cats;
-          console.log('Response getAllCats:', cats);
+          //console.log('Response getAllCats:', cats);
           resolve(cats);
         },
         (error) => {

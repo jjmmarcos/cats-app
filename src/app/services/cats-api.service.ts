@@ -10,7 +10,9 @@ import { CatsBackService } from './cats-back.service';
   providedIn: 'root'
 })
 export class CatsApiService {
-  private url: string = 'https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=live_c9GP3ryTrfx4brZoyFb34SNM1sbvZVOZXqyeMTyhoe2vIJPEgVPnwfasaUqk3gqx';
+  //private url: string = 'https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=live_c9GP3ryTrfx4brZoyFb34SNM1sbvZVOZXqyeMTyhoe2vIJPEgVPnwfasaUqk3gqx';
+  private url: string = 'https://api.thecatapi.com/v1/breeds';
+  
   constructor(private http: HttpClient,
               private catsBackService: CatsBackService) { }
 
@@ -32,13 +34,13 @@ export class CatsApiService {
 
   createCat(cat: ApiCat) {
     const backCat: BackCat = {
-      img: cat.url,
-      name: cat.breeds[0].name,
-      description: cat.breeds[0].description,
-      weight: cat.breeds[0].weight.metric,
-      temperament: cat.breeds[0].temperament,
-      origin: cat.breeds[0].origin,
-      life_span: cat.breeds[0].life_span
+      img: `https://cdn2.thecatapi.com/images/${cat.reference_image_id}.jpg`,
+      name: cat.name,
+      description: cat.description,
+      weight: cat.weight.metric,
+      temperament: cat.temperament,
+      origin: cat.origin,
+      life_span: cat.life_span
     };
     this.catsBackService.createCat(backCat);
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, map } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { BackCat } from '../models/back-cat.model';
 import { CatsApiService } from './cats-api.service';
 
@@ -34,12 +34,27 @@ export class CatsBackService {
   }
 
   createCat(cat: BackCat) {
-    this.http.post(this.url, cat, {headers: this.headers})
-      .subscribe( (res) => {
+    this.http.post(this.url, cat, {headers: this.headers}).subscribe( 
+      (res) => {
         console.log('Response createCat:', res);
       }, error => {
         console.log('Error createCat: ' + error);
       });
+  }
+
+  getCatById(id: string): Promise<BackCat> {
+    return new Promise<BackCat>((resolve, reject) => {
+      this.http.get<BackCat>(`${this.url}/${id}`).subscribe(
+        (catById) => {
+          resolve(catById);
+        },
+        (error) => {
+          console.log('Error getCatById: ' + error);
+          reject(error);
+        }
+      )
+    }) 
+    
   }
 
   get getCats() {

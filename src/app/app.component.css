@@ -1,0 +1,14 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .card-body {
+    flex-grow: 1;
+  }
+  
+  .card-img-top {
+    object-fit: cover;
+    height: 300px; /* Ajusta la altura deseada */
+  }

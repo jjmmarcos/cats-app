@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CatsApiService } from './services/cats-api.service';
 import { CatsBackService } from './services/cats-back.service';
+import { BackCat } from './models/back-cat.model';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,23 @@ import { CatsBackService } from './services/cats-back.service';
 })
 export class AppComponent implements OnInit {
   title = 'cats-app';
-
+  cats: BackCat[] = [];
   constructor(private catsApiService: CatsApiService,
-              private catsBackService: CatsBackService) {}
+              private catsBackService: CatsBackService) {
+    this.loadCats();
+  }
 
   ngOnInit() {
-    this.catsApiService.getRandomCats();
+    
+  }
 
-    //this.catsBackService.getAllCats();
+  async loadCats() {
+    await this.catsBackService.getAllCats();
+    
+    if (this.catsBackService.getCats.length === 0) {
+      await this.catsApiService.getRandomCats();
+    }
+    
+    this.cats = this.catsBackService.getCats;
   }
 }

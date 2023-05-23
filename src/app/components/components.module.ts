@@ -6,6 +6,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { SeeMoreComponent } from './see-more/see-more.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -24,7 +25,8 @@ import { SeeMoreComponent } from './see-more/see-more.component';
   imports: [
     CommonModule,
     AppRoutingModule,
-    FormsModule 
+    FormsModule,
+    NgbModule
   ]
 })
 export class ComponentsModule { }

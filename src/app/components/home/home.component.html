@@ -1,18 +1,39 @@
 <div class="container-fluid">
     <div class="row">
-        <div *ngFor="let cat of cats;" class="col-sm-6 col-m-6 col-lg-4 col-xl-2 m-2 mx-auto">
-            <div class="card">
-                <img [src]="cat.img" class="card-img-top" alt="{{ cat.name }}" (error)="handleImageError($event)">
-                <div class="card-body">
-                    <h5 class="card-title">{{ cat.name }}</h5>
-                    <p class="card-text">{{ cat.description }}</p>
-                </div>
-                <div class="card-buttons d-flex justify-content-center">
-                    <button type="button" class="btn btn-info mx-2 mb-2" routerLink="/info/{{cat.id}}">Info</button>
-                    <button type="button" class="btn btn-primary mx-2 mb-2" routerLink="/edit/{{cat.id}}">Edit</button>
-                    <button type="button" class="btn btn-danger mb-2" (click)="delete(cat.id)">Delete</button>
-                </div>
-            </div>
+      <div *ngFor="let cat of cats;" class="col-sm-6 col-m-6 col-lg-4 col-xl-3 m-2 mx-auto">
+        <div class="card">
+          <img [src]="cat.img" class="card-img-top" alt="{{ cat.name }}" (error)="handleImageError($event)">
+          <div class="card-body">
+            <h5 class="card-title">{{ cat.name }}</h5>
+            <p class="card-text">{{ cat.description }}</p>
+          </div>
+          <div class="card-buttons d-flex justify-content-center">
+            <button type="button" class="btn btn-info mx-2 mb-2" [routerLink]="'/info/' + cat.id">Info</button>
+            <button type="button" class="btn btn-primary mx-2 mb-2" [routerLink]="'/edit/' + cat.id">Edit</button>
+            <button type="button" class="btn btn-danger mb-2" (click)="openModal(cat.id)">Delete</button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal" tabindex="-1" role="dialog" [class.show]="modalOpen" [class.d-block]="modalOpen">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Removal Confirmation</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this cat?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteCat(idCatToDelete)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>

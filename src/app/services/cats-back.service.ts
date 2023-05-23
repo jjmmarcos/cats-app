@@ -3,6 +3,8 @@ import { Component, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BackCat } from '../models/back-cat.model';
 import { NotificationService } from './notification.service';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,10 +54,8 @@ export class CatsBackService {
         (error) => {
           console.log('Error getCatById: ' + error);
           reject(error);
-        }
-      )
-    }) 
-    
+        });
+    });    
   }
 
   updateCat(cat: BackCat): Promise<string> {
@@ -68,8 +68,21 @@ export class CatsBackService {
         (error) => {
           console.log('Error updateCat: ' + error);
           reject('Error updating cat');
-        }
-      )
+        });
+    });
+  }
+
+  deleteCat(id: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.http.delete(`${this.url}/${id}`, {headers: this.headers}).subscribe(
+        (res) => {
+          console.log('DeleteCat:', res);
+          resolve('Cat deleted successfully');
+        },
+        (error) => {
+          console.log('Error deleting cat', error);
+          reject('Error deleting cat');
+        });
     });
   }
 

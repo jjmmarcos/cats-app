@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BackCat } from 'src/app/models/back-cat.model';
 import { CatsApiService } from 'src/app/services/cats-api.service';
 import { CatsBackService } from 'src/app/services/cats-back.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,12 @@ import { CatsBackService } from 'src/app/services/cats-back.service';
 })
 export class HomeComponent {
   cats: BackCat[] = [];
+  modalOpen: boolean = false;
+  idCatToDelete: string = '';
+
   constructor(private catsApiService: CatsApiService,
-              private catsBackService: CatsBackService) {
+              private catsBackService: CatsBackService,
+              private modalService: NgbModal) {
     this.loadCats();
   }
 
@@ -29,8 +34,23 @@ export class HomeComponent {
     this.cats = this.catsBackService.getCats;
   }
 
-  delete(catId: string | undefined) {
-    console.log('catId', catId);
+  async deleteCat(catId: string) {
+    await this.catsBackService.deleteCat(catId);
+    const index = this.cats.findIndex(cat => cat.id === catId);
+    if (index !== -1) 
+      this.cats.splice(index, 1);
+    this.idCatToDelete = '';
+    this.closeModal();
+  }
+
+  openModal(catId: string | undefined) {
+    if(catId === undefined) return;
+    this.idCatToDelete = catId; // Asigna el id del gato a la propiedad idCatToDelete
+    this.modalOpen = true;
+  }
+
+  closeModal() {
+    this.modalOpen = false;
   }
 
   handleImageError(event: any) {

@@ -29,6 +29,10 @@ export class HomeComponent {
     this.cats = this.catsBackService.getCats;
   }
 
+  delete(catId: string | undefined) {
+    console.log('catId', catId);
+  }
+
   handleImageError(event: any) {
     event.target.src = 'https://media2.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif'; // Ruta de una imagen por defecto que puedes proporcionar
   }

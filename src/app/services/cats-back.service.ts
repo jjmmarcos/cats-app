@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 
-import { Observable, map } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BackCat } from '../models/back-cat.model';
-import { CatsApiService } from './cats-api.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,9 @@ export class CatsBackService {
   private url: string = 'http://localhost:8080/api/cats';
   private cats: BackCat[] = [];
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  constructor(private http: HttpClient) { }
+  
+  constructor(private http: HttpClient,
+    private notificationService: NotificationService) { }
 
   getAllCats(): Promise<BackCat[]> {
     return new Promise<BackCat[]>((resolve, reject) => {
@@ -55,6 +56,21 @@ export class CatsBackService {
       )
     }) 
     
+  }
+
+  updateCat(cat: BackCat): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.http.put(`${this.url}/${cat.id}`, cat, {headers: this.headers}).subscribe(
+        (res) => {
+          console.log('UpdateCat: ' + res);
+          resolve('Cat updated successfully');
+        }, 
+        (error) => {
+          console.log('Error updateCat: ' + error);
+          reject('Error updating cat');
+        }
+      )
+    });
   }
 
   get getCats() {

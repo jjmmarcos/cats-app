@@ -10,7 +10,7 @@
                 <div class="card-buttons d-flex justify-content-center">
                     <button type="button" class="btn btn-info mx-2 mb-2" routerLink="/info/{{cat.id}}">Info</button>
                     <button type="button" class="btn btn-primary mx-2 mb-2" routerLink="/edit/{{cat.id}}">Edit</button>
-                    <button type="button" class="btn btn-danger mb-2" routerLink="/delete">Delete</button>
+                    <button type="button" class="btn btn-danger mb-2" (click)="delete(cat.id)">Delete</button>
                 </div>
             </div>
         </div>

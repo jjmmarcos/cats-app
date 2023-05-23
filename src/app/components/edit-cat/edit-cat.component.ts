@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackCat } from 'src/app/models/back-cat.model';
 import { CatsBackService } from 'src/app/services/cats-back.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-edit-cat',
@@ -13,7 +14,8 @@ export class EditCatComponent {
   cat!: BackCat;
 
   constructor(private route: ActivatedRoute,
-              private catsBackService: CatsBackService) {}
+              private catsBackService: CatsBackService,
+              private notificationService: NotificationService) {}
 
   ngOnInit() {
     this.getParamId();
@@ -31,6 +33,13 @@ export class EditCatComponent {
     if(id == null) return console.log('getCatById: No Id provided');
 
      this.cat = await this.catsBackService.getCatById(id);
+  }
+
+  async editCat() {
+    const msg = await this.catsBackService.updateCat(this.cat);
+    (msg == ('Cat updated successfully'))
+      ? this.notificationService.showNotification(msg, 'success')
+      : this.notificationService.showNotification(msg, 'danger');   
   }
 
 

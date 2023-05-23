@@ -1,4 +1,8 @@
-<div class="container mt-3 mb-3">
+
+
+<div *ngIf="cat"
+     class="container mt-3 mb-3">
+     <div id="liveAlertPlaceholder"></div>
   <div class="row">
     <div class="col-md-6">
       <div class="card">
@@ -38,7 +42,10 @@
               <label for="Life_span">Life_span:</label>
               <input type="text" class="form-control" id="life_span" [(ngModel)]="cat.life_span" name="life_span" data-toggle="tooltip" data-placement="top" title="Click for edit Life_span.">
             </div>
-            <button type="submit" class="btn btn-primary mr-2 mt-2" routerLink="/home">Return</button>
+            <div class="card-buttons d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary mx-2 mt-2" (click)="editCat()">Edit</button>
+              <button type="submit" class="btn btn-danger mx-2 mt-2" routerLink="/home">Return</button>
+            </div>
           </form>
         </div>
       </div>

@@ -12,18 +12,33 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Edit Card</h5>
+          <h5 class="card-title">Full Card Info</h5>
           <form>
-            <div class="form-group">
+            <div class="form-group mt-2 mb-2">
               <label for="name">Name:</label>
-              <input type="text" class="form-control" id="name" [(ngModel)]="cat.name" name="name">
+              <input type="text" class="form-control" id="name" [(ngModel)]="cat.name" name="name" data-toggle="tooltip" data-placement="top" title="Click for edit Name.">
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2 mb-2">
               <label for="description">Description:</label>
-              <textarea class="form-control" id="description" [(ngModel)]="cat.description" name="description"></textarea>
+              <textarea class="form-control" id="description" [(ngModel)]="cat.description" name="description" data-toggle="tooltip" data-placement="top" title="Click for edit Description."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary mr-2">Save</button>
-            <button type="submit" class="btn btn-danger">Cancel</button>
+            <div class="form-group mt-2 mb-2">
+              <label for="weight">Weight:</label>
+              <input type="text" class="form-control" id="weight" [(ngModel)]="cat.weight" name="weight" data-toggle="tooltip" data-placement="top" title="Click for edit Weight.">
+            </div>
+            <div class="form-group mt-2 mb-2">
+              <label for="Temperament">Temperament:</label>
+              <input type="text" class="form-control" id="temperament" [(ngModel)]="cat.temperament" name="temperament" data-toggle="tooltip" data-placement="top" title="Click for edit Temperament.">
+            </div>
+            <div class="form-group mt-2 mb-2">
+              <label for="Origin">Origin:</label>
+              <input type="text" class="form-control" id="origin" [(ngModel)]="cat.origin" name="origin" data-toggle="tooltip" data-placement="top" title="Click for edit Origin.">
+            </div>
+            <div class="form-group mt-2">
+              <label for="Life_span">Life_span:</label>
+              <input type="text" class="form-control" id="life_span" [(ngModel)]="cat.life_span" name="life_span" data-toggle="tooltip" data-placement="top" title="Click for edit Life_span.">
+            </div>
+            <button type="submit" class="btn btn-primary mr-2 mt-2" routerLink="/home">Return</button>
           </form>
         </div>
       </div>

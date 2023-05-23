@@ -1,0 +1,47 @@
+<div class="container mt-3 mb-3">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <img src="{{ cat.img }}" class="card-img-top" alt="{{ cat.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ cat.name }}</h5>
+            <p class="card-text">{{ cat.description }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Full Card Info</h5>
+            <form>
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="cat.name" name="name" readonly data-toggle="tooltip" data-placement="top" title="For edit Name, click in the edit button in the main page, please.">
+              </div>
+              <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" [(ngModel)]="cat.description" name="description" readonly data-toggle="tooltip" data-placement="top" title="For edit Description, click in the edit button in the main page, please."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="weight">Weight:</label>
+                <input type="text" class="form-control" id="weight" [(ngModel)]="cat.weight" name="weight" readonly data-toggle="tooltip" data-placement="top" title="For edit Weight, click in the edit button in the main page, please.">
+              </div>
+              <div class="form-group">
+                <label for="Temperament">Temperament:</label>
+                <input type="text" class="form-control" id="temperament" [(ngModel)]="cat.temperament" name="temperament" readonly data-toggle="tooltip" data-placement="top" title="For edit Temperament, click in the edit button in the main page, please.">
+              </div>
+              <div class="form-group">
+                <label for="Origin">Origin:</label>
+                <input type="text" class="form-control" id="origin" [(ngModel)]="cat.origin" name="origin" readonly data-toggle="tooltip" data-placement="top" title="For edit Origin, click in the edit button in the main page, please.">
+              </div>
+              <div class="form-group">
+                <label for="Life_span">Life_span:</label>
+                <input type="text" class="form-control" id="life_span" [(ngModel)]="cat.life_span" name="life_span" readonly data-toggle="tooltip" data-placement="top" title="For edit Life_span, click in the edit button in the main page, please.">
+              </div>
+              <button type="submit" class="btn btn-primary mr-2 mt-2" routerLink="/home">Return</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

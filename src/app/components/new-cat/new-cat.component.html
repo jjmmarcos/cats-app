@@ -1,1 +1,83 @@
-<p>new-cat works!</p>
+<div *ngIf="cat" class="container mt-3 mb-3">
+    <div id="liveAlertPlaceholder"></div>
+  
+    <form [formGroup]="catForm" (ngSubmit)="newCat()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <img src="{{ cat.img }}" class="card-img-top" alt="{{ cat.name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ cat.name }}</h5>
+              <p class="card-text">{{ cat.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Full Card Info</h5>
+              <div class="form-group mt-2 mb-2">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" formControlName="name" 
+                  data-toggle="tooltip" data-placement="top" title="Click for edit Name."
+                  placeholder="Please insert the name">
+                <div *ngIf="catForm.get('name')?.invalid && (catForm.get('name')?.dirty || catForm.get('name')?.touched)">
+                  <small class="text-danger">{{ getErrorMessage('name') }}</small>
+                </div>
+              </div>
+              <div class="form-group mt-2 mb-2">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" formControlName="description"
+                  data-toggle="tooltip" data-placement="top" title="Click for edit Description."
+                  placeholder="Please insert a description"></textarea>
+                <div *ngIf="catForm.get('description')?.invalid && (catForm.get('description')?.dirty || catForm.get('description')?.touched)">
+                  <small class="text-danger">{{ getErrorMessage('description') }}</small>
+                </div>
+              </div>
+              <div class="form-group mt-2 mb-2">
+                <label for="weight">Weight:</label>
+                <input type="text" class="form-control" id="weight" formControlName="weight" 
+                  data-toggle="tooltip" data-placement="top" title="Click for edit Weight."
+                  placeholder="3 - 5">
+                <div *ngIf="catForm.get('weight')?.invalid && (catForm.get('weight')?.dirty || catForm.get('weight')?.touched)">
+                  <small class="text-danger">{{ getErrorMessage('weight') }}</small>
+                </div>
+              </div>
+              <div class="form-group mt-2 mb-2">
+                <label for="temperament">Temperament:</label>
+                <input type="text" class="form-control" id="temperament" formControlName="temperament"
+                  data-toggle="tooltip" data-placement="top" title="Click for edit Temperament."
+                  placeholder="Please insert the temperament">
+                <div *ngIf="catForm.get('temperament')?.invalid && (catForm.get('temperament')?.dirty || catForm.get('temperament')?.touched)">
+                  <small class="text-danger">{{ getErrorMessage('temperament') }}</small>
+                </div>
+              </div>
+              <div class="form-group mt-2 mb-2">
+                <label for="origin">Origin:</label>
+                <input type="text" class="form-control" id="origin" formControlName="origin" 
+                  data-toggle="tooltip" data-placement="top" title="Click for edit Origin."
+                  placeholder="Please insert the origin">
+                <div *ngIf="catForm.get('origin')?.invalid && (catForm.get('origin')?.dirty || catForm.get('origin')?.touched)">
+                  <small class="text-danger">{{ getErrorMessage('origin') }}</small>
+                </div>
+              </div>
+              <div class="form-group mt-2">
+                <label for="life_span">Life_span:</label>
+                <input type="text" class="form-control" id="life_span" formControlName="life_span" 
+                  data-toggle="tooltip" data-placement="top" title="Click for edit Life_span."
+                  placeholder="3 - 5">
+                <div *ngIf="catForm.get('life_span')?.invalid && (catForm.get('life_span')?.dirty || catForm.get('life_span')?.touched)">
+                  <small class="text-danger">{{ getErrorMessage('life_span') }}</small>
+                </div>
+              </div>
+              <div class="card-buttons d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary mx-2 mt-2" [disabled]="catForm.invalid">New Cat</button>
+                <button type="submit" class="btn btn-danger mx-2 mt-2" routerLink="/home">Return</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  

@@ -8,9 +8,15 @@
             <p class="card-text">{{ cat.description }}</p>
           </div>
           <div class="card-buttons d-flex justify-content-center">
-            <button type="button" class="btn btn-info mx-2 mb-2" [routerLink]="'/info/' + cat.id">Info</button>
-            <button type="button" class="btn btn-primary mx-2 mb-2" [routerLink]="'/edit/' + cat.id">Edit</button>
-            <button type="button" class="btn btn-danger mb-2" (click)="openModal(cat.id)">Delete</button>
+            <button type="button" 
+                    class="btn btn-info mx-2 mb-2" 
+                    [routerLink]="'/info/' + cat.id">Info</button>
+            <button type="button" 
+                    class="btn btn-primary mx-2 mb-2" 
+                    [routerLink]="'/edit/' + cat.id">Edit</button>
+            <button type="button" 
+                    class="btn btn-danger mb-2" 
+                    (click)="openModal(cat.id)">Delete</button>
           </div>
         </div>
       </div>
@@ -31,8 +37,12 @@
           <p>Are you sure you want to delete this cat?</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
-          <button type="button" class="btn btn-danger" (click)="deleteCat(idCatToDelete)">Delete</button>
+          <button type="button" 
+                  class="btn btn-secondary" 
+                  (click)="closeModal()">Cancel</button>
+          <button type="button" 
+                  class="btn btn-danger" 
+                  (click)="deleteCat(idCatToDelete)">Delete</button>
         </div>
       </div>
     </div>

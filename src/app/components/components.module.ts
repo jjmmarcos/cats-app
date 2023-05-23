@@ -4,7 +4,7 @@ import { EditCatComponent } from './edit-cat/edit-cat.component';
 import { NewCatComponent } from './new-cat/new-cat.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SeeMoreComponent } from './see-more/see-more.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -26,7 +26,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ]
 })
 export class ComponentsModule { }

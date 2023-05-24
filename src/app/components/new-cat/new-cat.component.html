@@ -7,8 +7,8 @@
           <div class="card">
             <img src="{{ cat.img }}" class="card-img-top" alt="{{ cat.name }}">
             <div class="card-body">
-              <h5 class="card-title">{{ cat.name }}</h5>
-              <p class="card-text">{{ cat.description }}</p>
+              <h5 class="card-title">The name will appear here</h5>
+              <p class="card-text">The description will appear here</p>
             </div>
           </div>
         </div>
@@ -32,6 +32,15 @@
                   placeholder="Please insert a description"></textarea>
                 <div *ngIf="catForm.get('description')?.invalid && (catForm.get('description')?.dirty || catForm.get('description')?.touched)">
                   <small class="text-danger">{{ getErrorMessage('description') }}</small>
+                </div>
+              </div>
+              <div class="form-group mt-2 mb-2">
+                <label for="img">Image:</label>
+                <input type="text" class="form-control" id="img" formControlName="img" 
+                  data-toggle="tooltip" data-placement="top" title="Click for edit the image."
+                  placeholder="Please insert an image">
+                <div *ngIf="catForm.get('img')?.invalid && (catForm.get('img')?.dirty || catForm.get('img')?.touched)">
+                  <small class="text-danger">{{ getErrorMessage('img') }}</small>
                 </div>
               </div>
               <div class="form-group mt-2 mb-2">

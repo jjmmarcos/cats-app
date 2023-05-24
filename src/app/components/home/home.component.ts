@@ -27,11 +27,11 @@ export class HomeComponent {
   async loadCats() {
     await this.catsBackService.getAllCats();
     
-    if (this.catsBackService.getCats.length === 0) {
+    if (this.catsBackService.cats.length === 0) {
       await this.catsApiService.getRandomCats();
     }
     
-    this.cats = this.catsBackService.getCats;
+    this.cats = this.catsBackService.cats;
   }
 
   async deleteCat(catId: string) {

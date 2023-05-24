@@ -10,12 +10,25 @@
                 (click)="deleteAllCats()">
                 Delete All
         </button>
-    </div>
-    <div class="btn-group" role="group" aria-label="Group 2">
         <button type="button" 
                 class="btn btn-secondary mx-2 mt-2" 
-                routerLink="'/home'">
+                [routerLink]="'/home/'">
                 Go to Homepage
-        </button>
+        </button>  
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle mx-2 mt-2" 
+                    type="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" (click)="orderBy('recent')">Recent</a></li>
+              <li><a class="dropdown-item" href="#" (click)="orderBy('name')">Name</a></li>
+              <li><a class="dropdown-item" href="#" (click)="orderBy('weight')">Weight</a></li>
+              <li><a class="dropdown-item" href="#" (click)="orderBy('life_span')">Life_span</a></li>
+            </ul>
+          </div>
     </div>
+    
 </div>

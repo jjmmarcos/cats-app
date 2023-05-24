@@ -36,10 +36,9 @@ export class EditCatComponent {
   }
 
   async editCat() {
-    const msg = await this.catsBackService.updateCat(this.cat);
-    (msg == ('Cat updated successfully'))
-      ? this.notificationService.showNotification(msg, 'success')
-      : this.notificationService.showNotification(msg, 'danger');   
+    this.notificationService.showNotification(
+      await this.catsBackService.updateCat(this.cat)
+    );
   }
 
   

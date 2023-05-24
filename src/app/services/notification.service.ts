@@ -4,9 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class NotificationService {
-  showNotification(message: string, type: string): void {
+  showNotification(message: string, ): void {
     const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
-    const wrapper = document.createElement('div')
+    const wrapper = document.createElement('div');
+    let type: string = (message == ('Cat created successfully'))
+    ? 'success'
+    : 'danger';    
+
     wrapper.innerHTML = [
       `<div class="alert alert-${type} alert-dismissible" role="alert">`,
       `   <div>${message}</div>`,
@@ -18,7 +22,7 @@ export class NotificationService {
     this.removeNotification(wrapper);
   }
 
-  removeNotification(wrapper: HTMLDivElement) {
+  private removeNotification(wrapper: HTMLDivElement) {
     setTimeout(() => {
       wrapper.remove();
     }, 1500);

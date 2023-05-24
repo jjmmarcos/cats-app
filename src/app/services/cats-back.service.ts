@@ -11,7 +11,7 @@ import { throwError } from 'rxjs';
 })
 export class CatsBackService {
   private url: string = 'http://localhost:8080/api/cats';
-  private cats: BackCat[] = [];
+  private _cats: BackCat[] = [];
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   
   constructor(private http: HttpClient,
@@ -36,13 +36,17 @@ export class CatsBackService {
     });
   }
 
-  createCat(cat: BackCat) {
-    this.http.post(this.url, cat, {headers: this.headers}).subscribe( 
-      (res) => {
-        console.log('Response createCat:', res);
-      }, error => {
-        console.log('Error createCat: ' + error);
-      });
+  createCat(cat: BackCat): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.http.post(this.url, cat, {headers: this.headers}).subscribe( 
+        (res) => {
+          console.log('Response createCat:', res);
+          resolve('Cat created successfully');
+        }, error => {
+          console.log('Error createCat: ' + error);
+          reject('Error creating cat');
+        });
+    });
   }
 
   getCatById(id: string): Promise<BackCat> {
@@ -86,8 +90,12 @@ export class CatsBackService {
     });
   }
 
-  get getCats() {
-    return [...this.cats];
+  get cats(): BackCat[] {
+    return [...this._cats];
+  }
+
+  set cats(cats: BackCat[]) {
+    this._cats = cats;
   }
 
 }

@@ -6,5 +6,6 @@ export interface BackCat {
     weight: string,
     temperament: string,
     origin: string,
-    life_span: string
+    life_span: string,
+    [key: string]: string | undefined;
 }

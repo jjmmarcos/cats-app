@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { BackCat } from 'src/app/models/back-cat.model';
+import { CatsBackService } from 'src/app/services/cats-back.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-new-cat',
@@ -18,9 +21,12 @@ export class NewCatComponent {
     origin: '',
     life_span: ''
   };
-
   catForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  
+  constructor(private formBuilder: FormBuilder,
+              private catsBackService: CatsBackService,
+              private notificationService: NotificationService,
+              private router: Router) {
     this.catForm = this.formBuilder.group({
       img: ['', [Validators.required, Validators.maxLength(500)]],
       name: ['', [Validators.required, Validators.maxLength(50)]],
@@ -32,8 +38,26 @@ export class NewCatComponent {
     });
   }
 
-  newCat() {
+  async newCat() {
+    if (!this.catForm.valid) throw new Error('Invalid cat form'); 
 
+      const cat: BackCat = {
+        img: this.catForm.get('img')?.value,
+        name: this.catForm.get('name')?.value,
+        description: this.catForm.get('description')?.value,
+        weight: this.catForm.get('weight')?.value,
+        temperament: this.catForm.get('temperament')?.value,
+        origin: this.catForm.get('origin')?.value,
+        life_span: this.catForm.get('life_span')?.value
+      };
+      
+      this.notificationService.showNotification(
+        await this.catsBackService.createCat(cat)
+      );      
+
+      this.router.navigate(['/home/']);
+
+      console.log(cat);    
   }
 
   isControlInvalid(controlName: string): boolean {

@@ -1,27 +1,35 @@
 <div class="container-fluid">
-    <div class="row">
-      <div *ngFor="let cat of cats;" class="col-sm-6 col-m-6 col-lg-4 col-xl-3 m-2 mx-auto">
-        <div class="card">
-          <img [src]="cat.img" class="card-img-top" alt="{{ cat.name }}" (error)="handleImageError($event)">
-          <div class="card-body">
-            <h5 class="card-title">{{ cat.name }}</h5>
-            <p class="card-text">{{ cat.description }}</p>
+    <div class="row" *ngIf="cats.length > 0; else noCatsMessage">
+        <div *ngFor="let cat of cats;" class="col-sm-6 col-m-6 col-lg-4 col-xl-3 m-2 mx-auto">
+          <div class="card">
+            <img [src]="cat.img" class="card-img-top" alt="{{ cat.name }}" (error)="handleImageError($event)">
+            <div class="card-body">
+              <h5 class="card-title">{{ cat.name }}</h5>
+              <p class="card-text">{{ cat.description }}</p>
+            </div>
+            <div class="card-buttons d-flex justify-content-center">
+              <button type="button" 
+                      class="btn btn-info mx-2 mb-2" 
+                      [routerLink]="'/info/' + cat.id">Info</button>
+              <button type="button" 
+                      class="btn btn-primary mx-2 mb-2" 
+                      [routerLink]="'/edit/' + cat.id">Edit</button>
+              <button type="button" 
+                      class="btn btn-danger mb-2" 
+                      (click)="openModal(cat.id)">Delete</button>
+            </div>
           </div>
-          <div class="card-buttons d-flex justify-content-center">
-            <button type="button" 
-                    class="btn btn-info mx-2 mb-2" 
-                    [routerLink]="'/info/' + cat.id">Info</button>
-            <button type="button" 
-                    class="btn btn-primary mx-2 mb-2" 
-                    [routerLink]="'/edit/' + cat.id">Edit</button>
-            <button type="button" 
-                    class="btn btn-danger mb-2" 
-                    (click)="openModal(cat.id)">Delete</button>
-          </div>
-        </div>
-      </div>
+        </div>         
     </div>
+    <!-- Mensaje a mostrar cuando no hay gatos -->
+    <ng-template #noCatsMessage>
+      <div class="container text-center mt-2">
+        <p>No existen gatos todavía.</p>
+      </div>
+    </ng-template>
   </div>
+
+  
   
   <!-- Modal -->
   <div class="modal" tabindex="-1" role="dialog" [class.show]="modalOpen" [class.d-block]="modalOpen">

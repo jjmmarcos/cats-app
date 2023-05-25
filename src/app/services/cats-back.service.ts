@@ -1,10 +1,7 @@
-import { Component, Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BackCat } from '../models/back-cat.model';
-import { NotificationService } from './notification.service';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +9,10 @@ import { throwError } from 'rxjs';
 export class CatsBackService {
   private url: string = 'http://localhost:8080/api/cats';
   private _cats: BackCat[] = [];
+  public catsUpdated: EventEmitter<any[]> = new EventEmitter<BackCat[]>();
   private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   
-  constructor(private http: HttpClient,
-    private notificationService: NotificationService) { }
+  constructor(private http: HttpClient) { }
 
   getAllCats(): Promise<BackCat[]> {
     return new Promise<BackCat[]>((resolve, reject) => {
@@ -25,11 +22,9 @@ export class CatsBackService {
             this.cats.push(cat);
           });
           this.cats = cats;
-          //console.log('Response getAllCats:', cats);
           resolve(cats);
         },
         (error) => {
-          console.log('Error getAllCats: ' + error);
           reject(error);
         }
       );
@@ -40,10 +35,8 @@ export class CatsBackService {
     return new Promise<string>((resolve, reject) => {
       this.http.post(this.url, cat, {headers: this.headers}).subscribe( 
         (res) => {
-          console.log('Response createCat:', res);
           resolve('Cat created successfully');
-        }, error => {
-          console.log('Error createCat: ' + error);
+        }, (error) => {
           reject('Error creating cat');
         });
     });
@@ -66,11 +59,9 @@ export class CatsBackService {
     return new Promise<string>((resolve, reject) => {
       this.http.put(`${this.url}/${cat.id}`, cat, {headers: this.headers}).subscribe(
         (res) => {
-          console.log('UpdateCat: ' + res);
           resolve('Cat updated successfully');
         }, 
         (error) => {
-          console.log('Error updateCat: ' + error);
           reject('Error updating cat');
         });
     });
@@ -80,14 +71,29 @@ export class CatsBackService {
     return new Promise<string>((resolve, reject) => {
       this.http.delete(`${this.url}/${id}`, {headers: this.headers}).subscribe(
         (res) => {
-          console.log('DeleteCat:', res);
           resolve('Cat deleted successfully');
         },
         (error) => {
-          console.log('Error deleting cat', error);
           reject('Error deleting cat');
         });
     });
+  }
+
+  deleteAllCats(): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.http.delete<string>(`${this.url}/deleteAll`, {headers: this.headers}).subscribe(
+        (res) => {
+          resolve(res);
+        }, 
+        (error) => {
+          reject(error);
+        });
+    });
+  }
+
+  updateArrayCats(newCats: any[]) {
+    this.cats = newCats;
+    this.catsUpdated.emit(this.cats);
   }
 
   get cats(): BackCat[] {

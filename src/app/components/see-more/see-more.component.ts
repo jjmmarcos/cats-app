@@ -23,7 +23,6 @@ export class SeeMoreComponent {
   getParamId() {
     this.route.paramMap.subscribe(params => {
       this.catId = params.get('id');
-      // console.log(this.catId); // Display the value of the 'id' parameter in the console
     });
   }
 

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { EditCatComponent } from './components/edit-cat/edit-cat.component';
-import { ComponentsRoutingModule } from './components/components.routing';
 import { NewCatComponent } from './components/new-cat/new-cat.component';
 import { HomeComponent } from './components/home/home.component';
 import { SeeMoreComponent } from './components/see-more/see-more.component';

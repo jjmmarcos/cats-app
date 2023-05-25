@@ -21,8 +21,7 @@ export class CatsApiService {
       this.http.get<ApiCat[]>(this.url).subscribe( 
         (cats) => {
         cats.forEach(cat => {
-          this.createCat(cat);   
-          console.log(cat);       
+          this.createCat(cat);        
         });
         resolve(cats);
       }, (error) => {

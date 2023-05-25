@@ -1,11 +1,5 @@
-
-
-<div *ngIf="cat"
-     class="container mt-3 mb-3">
-     <div id="liveAlertPlaceholder"></div>
-
-    
-
+<div *ngIf="cat" class="container mt-3 mb-3">
+  <div id="liveAlertPlaceholder"></div>
   <div class="row">
     <div class="col-md-6">
       <div class="card">
@@ -20,34 +14,34 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Full Card Info</h5>
-          <form>
+          <form (ngSubmit)="editCat()">
             <div class="form-group mt-2 mb-2">
               <label for="name">Name:</label>
-              <input type="text" class="form-control" id="name" [(ngModel)]="cat.name" name="name" data-toggle="tooltip" data-placement="top" title="Click for edit Name.">
+              <input type="text" class="form-control" id="name" [(ngModel)]="cat.name" name="name" required data-toggle="tooltip" data-placement="top" title="Click to edit Name.">
             </div>
             <div class="form-group mt-2 mb-2">
               <label for="description">Description:</label>
-              <textarea class="form-control" id="description" [(ngModel)]="cat.description" name="description" data-toggle="tooltip" data-placement="top" title="Click for edit Description."></textarea>
+              <textarea class="form-control" id="description" [(ngModel)]="cat.description" name="description" required data-toggle="tooltip" data-placement="top" title="Click to edit Description."></textarea>
             </div>
             <div class="form-group mt-2 mb-2">
               <label for="weight">Weight:</label>
-              <input type="text" class="form-control" id="weight" [(ngModel)]="cat.weight" name="weight" data-toggle="tooltip" data-placement="top" title="Click for edit Weight.">
+              <input type="text" class="form-control" id="weight" [(ngModel)]="cat.weight" name="weight" required data-toggle="tooltip" data-placement="top" title="Click to edit Weight.">
             </div>
             <div class="form-group mt-2 mb-2">
-              <label for="Temperament">Temperament:</label>
-              <input type="text" class="form-control" id="temperament" [(ngModel)]="cat.temperament" name="temperament" data-toggle="tooltip" data-placement="top" title="Click for edit Temperament.">
+              <label for="temperament">Temperament:</label>
+              <input type="text" class="form-control" id="temperament" [(ngModel)]="cat.temperament" name="temperament" required data-toggle="tooltip" data-placement="top" title="Click to edit Temperament.">
             </div>
             <div class="form-group mt-2 mb-2">
-              <label for="Origin">Origin:</label>
-              <input type="text" class="form-control" id="origin" [(ngModel)]="cat.origin" name="origin" data-toggle="tooltip" data-placement="top" title="Click for edit Origin.">
+              <label for="origin">Origin:</label>
+              <input type="text" class="form-control" id="origin" [(ngModel)]="cat.origin" name="origin" required data-toggle="tooltip" data-placement="top" title="Click to edit Origin.">
             </div>
             <div class="form-group mt-2">
-              <label for="Life_span">Life_span:</label>
-              <input type="text" class="form-control" id="life_span" [(ngModel)]="cat.life_span" name="life_span" data-toggle="tooltip" data-placement="top" title="Click for edit Life_span.">
+              <label for="life_span">Life_span:</label>
+              <input type="text" class="form-control" id="life_span" [(ngModel)]="cat.life_span" name="life_span" required data-toggle="tooltip" data-placement="top" title="Click to edit Life_span.">
             </div>
             <div class="card-buttons d-flex justify-content-center">
-              <button type="submit" class="btn btn-primary mx-2 mt-2" (click)="editCat()">Edit</button>
-              <button type="submit" class="btn btn-danger mx-2 mt-2" routerLink="/home">Return</button>
+              <button type="submit" class="btn btn-primary mx-2 mt-2">Edit</button>
+              <button type="button" class="btn btn-danger mx-2 mt-2" routerLink="/home">Return</button>
             </div>
           </form>
         </div>

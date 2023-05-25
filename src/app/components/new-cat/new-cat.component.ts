@@ -55,9 +55,7 @@ export class NewCatComponent {
         await this.catsBackService.createCat(cat)
       );      
 
-      this.router.navigate(['/home/']);
-
-      console.log(cat);    
+      this.router.navigate(['/home/']);   
   }
 
   isControlInvalid(controlName: string): boolean {

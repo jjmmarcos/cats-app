@@ -7,7 +7,7 @@
         </button>
         <button type="button" 
                 class="btn btn-danger mx-2 mt-2" 
-                (click)="deleteAllCats()">
+                (click)="openModal()">
                 Delete All
         </button>
         <button type="button" 
@@ -15,20 +15,31 @@
                 [routerLink]="'/home/'">
                 Go to Homepage
         </button>  
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle mx-2 mt-2" 
-                    type="button" 
-                    data-bs-toggle="dropdown" 
-                    aria-expanded="false">
-              Dropdown button
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#" (click)="orderBy('recent')">Recent</a></li>
-              <li><a class="dropdown-item" href="#" (click)="orderBy('name')">Name</a></li>
-              <li><a class="dropdown-item" href="#" (click)="orderBy('weight')">Weight</a></li>
-              <li><a class="dropdown-item" href="#" (click)="orderBy('life_span')">Life_span</a></li>
-            </ul>
-          </div>
     </div>
     
+</div>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog" [class.show]="modalOpen" [class.d-block]="modalOpen">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Delete All Confirmation</h5>
+                <button type="button" class="close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <p>Are you sure you want to delete all cats?</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" 
+                        class="btn btn-secondary" 
+                        (click)="closeModal()">Cancel</button>
+                <button type="button" 
+                        class="btn btn-danger" 
+                        (click)="deleteAllCats()">Delete All</button>
+                </div>
+                </div>
+        </div>
 </div>

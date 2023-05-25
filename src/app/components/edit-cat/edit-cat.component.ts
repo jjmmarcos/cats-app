@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackCat } from 'src/app/models/back-cat.model';
 import { CatsBackService } from 'src/app/services/cats-back.service';
@@ -9,13 +9,15 @@ import { NotificationService } from 'src/app/services/notification.service';
   templateUrl: './edit-cat.component.html',
   styleUrls: ['./edit-cat.component.css']
 })
-export class EditCatComponent {
-  catId!: string | null;
+export class EditCatComponent implements OnInit {
+  catId: string | null = null;
   cat!: BackCat;
 
-  constructor(private route: ActivatedRoute,
-              private catsBackService: CatsBackService,
-              private notificationService: NotificationService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private catsBackService: CatsBackService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit() {
     this.getParamId();
@@ -30,18 +32,27 @@ export class EditCatComponent {
   }
 
   async getCatById(id: string | null) {
-    if(id == null) return console.log('getCatById: No Id provided');
+    if (id === null) {
+      console.log('getCatById: No Id provided');
+      return;
+    }
 
-     this.cat = await this.catsBackService.getCatById(id);
+    this.cat = await this.catsBackService.getCatById(id);
   }
 
   async editCat() {
-    this.notificationService.showNotification(
-      await this.catsBackService.updateCat(this.cat)
-    );
+    if (this.isValid()) {
+      this.notificationService.showNotification(
+        await this.catsBackService.updateCat(this.cat)
+      );
+    }
   }
 
-  
-
-
+  isValid(): boolean {
+    // Perform your validation logic here
+    if (!this.cat.name || !this.cat.description || !this.cat.weight || !this.cat.temperament || !this.cat.origin || !this.cat.life_span) {
+      return false;
+    }
+    return true;
+  }
 }

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { BackCat } from 'src/app/models/back-cat.model';
 import { CatsApiService } from 'src/app/services/cats-api.service';
 import { CatsBackService } from 'src/app/services/cats-back.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -15,22 +14,25 @@ export class HomeComponent {
   idCatToDelete: string = '';
 
   constructor(private catsApiService: CatsApiService,
-              private catsBackService: CatsBackService,
-              private modalService: NgbModal) {
-    this.loadCats();
+              private catsBackService: CatsBackService) {
+    
   }
 
   ngOnInit() {
-    
+    this.loadCats();
+
+    this.catsBackService.catsUpdated.subscribe((newCats: any[]) => {
+      this.cats = newCats;
+    });
   }
 
   async loadCats() {
-    await this.catsBackService.getAllCats();
-    
-    if (this.catsBackService.cats.length === 0) {
+    this.cats = await this.catsBackService.getAllCats();
+  
+    if (this.cats.length === 0) {
       await this.catsApiService.getRandomCats();
     }
-    
+  
     this.cats = this.catsBackService.cats;
   }
 
@@ -45,7 +47,7 @@ export class HomeComponent {
 
   openModal(catId: string | undefined) {
     if(catId === undefined) return;
-    this.idCatToDelete = catId; // Asigna el id del gato a la propiedad idCatToDelete
+    this.idCatToDelete = catId; 
     this.modalOpen = true;
   }
 
@@ -54,6 +56,7 @@ export class HomeComponent {
   }
 
   handleImageError(event: any) {
-    event.target.src = 'https://media2.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif'; // Ruta de una imagen por defecto que puedes proporcionar
+    event.target.src = 'https://media2.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif'; // Ruta de una imagen por defecto
   }
+
 }

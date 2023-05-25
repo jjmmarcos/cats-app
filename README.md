@@ -1,27 +1,13 @@
 # CatsApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+1. Init the database in XAMPP. [SQL file](https://github.com/jjmmarcos/catsSQL)
+2. Deploy the backend. [backend proyect](https://github.com/jjmmarcos/CatsBackend)
+3. Deploy the front following the instructions above.
 
-## Development server
+1. Clone or download the project. Open it in Visual Studio Code and run `npm install` or `npm i`
+2. Run `ng s -o`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+The application by default will create random cats for see the app behaviour. Is a crud so you can create, read, update and delete all cats.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[TheCatAPI](https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t) is used for get the random cats.

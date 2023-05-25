@@ -27,13 +27,11 @@ export class EditCatComponent implements OnInit {
   getParamId() {
     this.route.paramMap.subscribe(params => {
       this.catId = params.get('id');
-      // console.log(this.catId); // Display the value of the 'id' parameter in the console
     });
   }
 
   async getCatById(id: string | null) {
     if (id === null) {
-      console.log('getCatById: No Id provided');
       return;
     }
 
@@ -49,7 +47,6 @@ export class EditCatComponent implements OnInit {
   }
 
   isValid(): boolean {
-    // Perform your validation logic here
     if (!this.cat.name || !this.cat.description || !this.cat.weight || !this.cat.temperament || !this.cat.origin || !this.cat.life_span) {
       return false;
     }

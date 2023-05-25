@@ -49,7 +49,6 @@ export class CatsBackService {
           resolve(catById);
         },
         (error) => {
-          console.log('Error getCatById: ' + error);
           reject(error);
         });
     });    
